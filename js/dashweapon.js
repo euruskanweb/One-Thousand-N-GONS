@@ -1,8 +1,8 @@
 javascript:(function() {
     const e = {
-        name: "dash",
+        name: "thrusters",
         descriptionFunction() {
-            return `Dash forward at high speed in the direction you are aiming. Hitting a mob during the dash damages it.`;
+            return `Dash forward at high speed in the direction you are aiming. Hitting a mob during the dash damages it. You are immune to damage while dashing.`;
         },
         ammo: Infinity,
         ammoPack: Infinity,
@@ -15,7 +15,7 @@ javascript:(function() {
         cdLength: 45,
         dashLength: 12,
         dashSpeed: 45,
-        dashDamage: 0.35,
+        dashDamage: 35,
         dashEndCycle: 0,
         dashHit: new Set(),
 
@@ -27,6 +27,9 @@ javascript:(function() {
             this.dashEndCycle = m.cycle + this.dashLength;
             this.dashHit = new Set();
 
+            // Make the player immune to damage during the dash.
+            m.immuneCycle = m.cycle + this.dashLength;
+
             // Launch the player in the direction they are aiming.
             Matter.Body.setVelocity(player, {
                 x: this.dashSpeed * Math.cos(m.angle),
@@ -35,7 +38,7 @@ javascript:(function() {
         },
 
         do() {
-            // Handle cooldown.
+            // Handle the weapon cooldown.
             if (!this.canDashFire) {
                 this.cooldown++;
 
@@ -45,16 +48,16 @@ javascript:(function() {
                 }
             }
 
-            // Stop applying dash speed when the dash ends.
+            // Only apply dash movement and collision damage while dashing.
             if (m.cycle >= this.dashEndCycle) return;
 
-            // Maintain high speed during the dash.
+            // Keep the player moving quickly in the aiming direction.
             Matter.Body.setVelocity(player, {
                 x: this.dashSpeed * Math.cos(m.angle),
                 y: this.dashSpeed * Math.sin(m.angle)
             });
 
-            // Damage each mob only once per dash.
+            // Damage each mob at most once per dash.
             for (let index = 0; index < mob.length; index++) {
                 const target = mob[index];
 
@@ -72,18 +75,23 @@ javascript:(function() {
         },
     };
 
+    // Add the Dash weapon.
     b.guns.push(e);
 
     // Remove duplicate weapons with the same name.
     const gunArray = b.guns.filter(
         (obj, index, self) =>
-            index === self.findIndex((item) => item.name === obj.name)
+            index === self.findIndex(
+                (item) => item.name === obj.name
+            )
     );
 
-    // Remove duplicate tech entries, matching the original mod format.
+    // Remove duplicate tech entries, matching sniper.js.
     const techArray = tech.tech.filter(
         (obj, index, self) =>
-            index === self.findIndex((item) => item.name === obj.name)
+            index === self.findIndex(
+                (item) => item.name === obj.name
+            )
     );
 
     b.guns = gunArray;
