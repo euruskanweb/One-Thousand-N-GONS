@@ -12,10 +12,10 @@ javascript:(function() {
         cycle: 0,
         canDashFire: true,
         cooldown: 0,
-        cdLength: 450,
+        cdLength: 0,
         dashLength: 12,
         dashSpeed: 45,
-        dashDamage: 35,
+        dashDamage: 40,
         dashEndCycle: 0,
         dashHit: new Set(),
 
