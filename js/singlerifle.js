@@ -1,9 +1,9 @@
 
 javascript:(function() {
     const e = {
-        name: "cannon",
+        name: "catipult",
         descriptionFunction() {
-            return `fire a single, high-speed <strong>shell</strong><br>with a slow fire rate<br><strong>${Number((0.5 * this.ammoPack).toFixed(1))}</strong> shots per ${powerUps.orb.ammo()}`;
+            return `fire a single, damaging <strong>shell</strong><br>with a slow fire rate<br><strong>${Number((0.5 * this.ammoPack).toFixed(1))}</strong> shells per ${powerUps.orb.ammo()}`;
         },
         ammo: 24,
         ammoPack: 3,
