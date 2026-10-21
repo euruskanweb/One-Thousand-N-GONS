@@ -4,10 +4,6 @@ const tech = {
     removeCount: 0,
     aperiodicTiling: 0,
     qubit: 0,
-    cannonMegalithicYard: false,
-    cannonHowitzer: false,
-    cannonFlak: false,
-    cannonStonetoss: false,
     resetAllTech() {
         for (let i = 0, len = tech.tech.length; i < len; i++) {
             tech.tech[i].isLost = false
@@ -9030,103 +9026,6 @@ const tech = {
             tech.isNeutronSlow = false
         }
     },
-    // Add these flags to the tech object where its other properties are defined.
-tech.cannonMegalithicYard = false;
-tech.cannonHowitzer = false;
-tech.cannonFlak = false;
-tech.cannonStonetoss = false;
-
-// Add these four objects inside the existing tech.tech array.
-{
-    name: "Megalithic yard",
-    description: "double the size of cannon shells",
-    isGunTech: true,
-    maxCount: 1,
-    count: 0,
-    frequency: 2,
-    frequencyDefault: 2,
-    isJunk: false,
-    isBadRandomOption: false,
-    requires: "cannon",
-    allowed() {
-        return b.guns.some(gun => gun.name === "cannon" && gun.have)
-            && !tech.cannonMegalithicYard;
-    },
-    effect() {
-        tech.cannonMegalithicYard = true;
-    },
-    remove() {
-        tech.cannonMegalithicYard = false;
-    }
-},
-{
-    name: "Howitzer",
-    description: "cannon shells explode on impact",
-    isGunTech: true,
-    maxCount: 1,
-    count: 0,
-    frequency: 2,
-    frequencyDefault: 2,
-    isJunk: false,
-    isBadRandomOption: false,
-    requires: "cannon",
-    allowed() {
-        return b.guns.some(gun => gun.name === "cannon" && gun.have)
-            && !tech.cannonHowitzer;
-    },
-    effect() {
-        tech.cannonHowitzer = true;
-    },
-    remove() {
-        tech.cannonHowitzer = false;
-        tech.cannonFlak = false;
-    }
-},
-{
-    name: "Flak",
-    description: "cannon shells split into five explosive shells",
-    isGunTech: true,
-    maxCount: 1,
-    count: 0,
-    frequency: 2,
-    frequencyDefault: 2,
-    isJunk: false,
-    isBadRandomOption: false,
-    requires: "cannon, Howitzer",
-    allowed() {
-        return b.guns.some(gun => gun.name === "cannon" && gun.have)
-            && tech.cannonHowitzer
-            && !tech.cannonFlak;
-    },
-    effect() {
-        tech.cannonFlak = true;
-    },
-    remove() {
-        tech.cannonFlak = false;
-    }
-},
-{
-    name: "Stonetoss",
-    description: "cannon shells are affected by gravity",
-    isGunTech: true,
-    maxCount: 1,
-    count: 0,
-    frequency: 2,
-    frequencyDefault: 2,
-    isJunk: false,
-    isBadRandomOption: false,
-    requires: "cannon",
-    allowed() {
-        return b.guns.some(gun => gun.name === "cannon" && gun.have)
-            && !tech.cannonStonetoss;
-    },
-    effect() {
-        tech.cannonStonetoss = true;
-    },
-    remove() {
-        tech.cannonStonetoss = false;
-    }
-},
     {
         name: "radioactive contamination",
         description: "after a mob or shield <strong>dies</strong>,<br>leftover <strong class='color-p' data-help='radioactive'>radiation</strong> <strong>spreads</strong> to a nearby mob",
