@@ -2,7 +2,7 @@ javascript:(function() {
     const e = {
         name: "thrusters",
         descriptionFunction() {
-            return `Dash forward at high speed in the direction you are aiming. Hitting a mob during the dash damages it. You are immune to damage while dashing.`;
+            return `dash forward at high speed<br>hitting a mob damages it`;
         },
         ammo: Infinity,
         ammoPack: Infinity,
