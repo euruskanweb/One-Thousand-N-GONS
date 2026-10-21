@@ -1,9 +1,9 @@
 
 javascript:(function() {
     const e = {
-        name: "single shot rifle",
+        name: "cannon",
         descriptionFunction() {
-            return `fire a single, high-speed <strong>bullet</strong><br>with a slow fire rate<br><strong>${Number((0.5 * this.ammoPack).toFixed(1))}</strong> shots per ${powerUps.orb.ammo()}`;
+            return `fire a single, high-speed <strong>shell</strong><br>with a slow fire rate<br><strong>${Number((0.5 * this.ammoPack).toFixed(1))}</strong> shots per ${powerUps.orb.ammo()}`;
         },
         ammo: 24,
         ammoPack: 3,
