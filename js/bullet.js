@@ -153,6 +153,31 @@ function advancePhononWaveFront(position, radius, angle, halfArc, edge1Advance, 
 }
 
 const b = {
+    rifleBullet(pos, velocity, dmg = 4) {
+        // Create a thin rectangular projectile.
+        const me = bullet.length;
+
+        bullet[me] = Bodies.rectangle(
+            pos.x,
+            pos.y,
+            32, // bullet length
+            3,  // bullet thickness
+            b.fireAttributes(Math.atan2(velocity.y, velocity.x))
+        );
+
+        // Give the projectile its initial velocity.
+        Matter.Body.setVelocity(bullet[me], velocity);
+
+        // Add it to the physics world.
+        Composite.add(engine.world, bullet[me]);
+
+        // Configure damage and lifetime.
+        bullet[me].dmg = dmg;
+        bullet[me].endCycle = simulation.cycle + 100;
+
+        // Remove extra behavior: this is a simple rifle bullet.
+        bullet[me].do = function() {};
+    },
     queueSuperBalls({ count = 0, num, speed, delay }) {
         simulation.ephemera.push({
             saveType: "super balls", count, num, speed, delay,
