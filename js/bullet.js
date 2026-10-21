@@ -161,7 +161,7 @@ const b = {
             pos.x,
             pos.y,
             32, // bullet length
-            3,  // bullet thickness
+            32,  // bullet thickness
             b.fireAttributes(Math.atan2(velocity.y, velocity.x))
         );
 
