@@ -11,8 +11,8 @@ javascript:(function() {
 
         cycle: 0,
         canDashFire: true,
-        cooldown: 5,
-        cdLength: 45,
+        cooldown: 0,
+        cdLength: 450,
         dashLength: 12,
         dashSpeed: 45,
         dashDamage: 35,
