@@ -17,7 +17,7 @@ javascript:(function() {
             const speed = 55;
             const damage = 4;
 
-            b.nail(
+            b.rifleBullet(
                 {
                     x: m.pos.x + 30 * Math.cos(m.angle),
                     y: m.pos.y + 30 * Math.sin(m.angle)
