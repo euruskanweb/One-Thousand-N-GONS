@@ -5,8 +5,8 @@ javascript:(function() {
             return `dash forward at high speed<br>hitting a mob damages it<br>${Number((0.5 * this.ammoPack).toFixed(1))}</strong> dashes per ${powerUps.orb.ammo()}`;
         },
         ammo: 5,
-        ammoPack: 10,
-        defaultAmmoPack: 10,
+        ammoPack: 1000,
+        defaultAmmoPack: 1000,
         have: false,
 
         cycle: 0,
