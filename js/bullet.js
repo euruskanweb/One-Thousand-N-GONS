@@ -153,31 +153,88 @@ function advancePhononWaveFront(position, radius, angle, halfArc, edge1Advance, 
 }
 
 const b = {
-    rifleBullet(pos, velocity, dmg = 4) {
-        // Create a thin rectangular projectile.
-        const me = bullet.length;
+    b.rifleBullet = function (pos, velocity, dmg = 4, isFlakChild = false) {
+    const me = bullet.length;
 
-        bullet[me] = Bodies.rectangle(
-            pos.x,
-            pos.y,
-            32, // bullet length
-            32,  // bullet thickness
-            b.fireAttributes(Math.atan2(velocity.y, velocity.x))
-        );
+    // Base shell size is 32 x 32.
+    const size = tech.cannonMegalithicYard ? 64 : 32;
 
-        // Give the projectile its initial velocity.
-        Matter.Body.setVelocity(bullet[me], velocity);
+    bullet[me] = Bodies.rectangle(
+        pos.x,
+        pos.y,
+        size,
+        size,
+        b.fireAttributes(Math.atan2(velocity.y, velocity.x))
+    );
 
-        // Add it to the physics world.
-        Composite.add(engine.world, bullet[me]);
+    Matter.Body.setVelocity(bullet[me], velocity);
+    Composite.add(engine.world, bullet[me]);
 
-        // Configure damage and lifetime.
-        bullet[me].dmg = dmg;
-        bullet[me].endCycle = simulation.cycle + 100;
+    bullet[me].dmg = dmg;
+    bullet[me].endCycle = simulation.cycle + 150;
+    bullet[me].hasExploded = false;
 
-        // Remove extra behavior: this is a simple rifle bullet.
-        bullet[me].do = function() {};
-    },
+    // Stonetoss: apply downward acceleration each update.
+    bullet[me].do = function () {
+        if (tech.cannonStonetoss) {
+            Matter.Body.setVelocity(this, {
+                x: this.velocity.x,
+                y: this.velocity.y + 0.25
+            });
+        }
+
+        // Detect collisions with the map.
+        if (
+            tech.cannonHowitzer &&
+            Matter.Query.collides(this, map).length
+        ) {
+            this.endCycle = simulation.cycle;
+        }
+    };
+
+    // Howitzer: explode when the shell hits a mob.
+    bullet[me].beforeDmg = function () {
+        if (tech.cannonHowitzer) {
+            this.endCycle = simulation.cycle;
+        }
+    };
+
+    // Howitzer: explode when the shell ends.
+    // Flak: release five smaller explosive shells.
+    bullet[me].onEnd = function () {
+        if (!tech.cannonHowitzer || this.hasExploded) return;
+
+        this.hasExploded = true;
+
+        const where = {
+            x: this.position.x,
+            y: this.position.y
+        };
+
+        if (tech.cannonFlak && !isFlakChild) {
+            for (let i = 0; i < 5; i++) {
+                const angle = (Math.PI * 2 * i / 5)
+                    + Math.random() * 0.2;
+
+                const speed = 9 + Math.random() * 4;
+
+                const childVelocity = {
+                    x: Math.cos(angle) * speed,
+                    y: Math.sin(angle) * speed - 3
+                };
+
+                b.rifleBullet(
+                    where,
+                    childVelocity,
+                    dmg * 0.5,
+                    true
+                );
+            }
+        }
+
+        b.explosion(where, 100);
+    };
+};
     queueSuperBalls({ count = 0, num, speed, delay }) {
         simulation.ephemera.push({
             saveType: "super balls", count, num, speed, delay,
