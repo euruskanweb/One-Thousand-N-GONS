@@ -1,6 +1,6 @@
 javascript:(function() {
     const e = {
-        name: "rocket engine 2",
+        name: "rocket engine 3",
         descriptionFunction() {
             return `dash forward at high speed<br>hitting a mob damages it<br>${Number((0.5 * this.ammoPack).toFixed(1))}</strong> dashes per ${powerUps.orb.ammo()}`;
         },
