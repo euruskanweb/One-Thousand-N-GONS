@@ -1,6 +1,6 @@
 javascript:(function() {
     const e = {
-        name: "rocket",
+        name: "rocket engine",
         descriptionFunction() {
             return `dash forward at high speed<br>hitting a mob damages it<br>${Number((0.5 * this.ammoPack).toFixed(1))}</strong> dashes per ${powerUps.orb.ammo()}`;
         },
@@ -161,7 +161,7 @@ javascript:(function() {
                 return hasRocketEngine() && !e.techAzimuth;
             },
 
-            
+            requires: "Rocket Engine",
 
             effect() {
                 e.techAzimuth = true;
@@ -185,7 +185,7 @@ javascript:(function() {
                 return hasRocketEngine() && !e.techMagBeam;
             },
 
-            
+            requires: "Rocket Engine",
 
             effect() {
                 e.techMagBeam = true;
