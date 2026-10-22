@@ -161,7 +161,7 @@ javascript:(function() {
                 return hasRocketEngine() && !e.techAzimuth;
             },
 
-            requires: "rocket engine (Rocket Thrusters)",
+            requires: "rocket engine",
 
             effect() {
                 e.techAzimuth = true;
@@ -185,7 +185,7 @@ javascript:(function() {
                 return hasRocketEngine() && !e.techMagBeam;
             },
 
-            requires: "rocket engine (Rocket Thrusters)",
+            requires: "rocket engine",
 
             effect() {
                 e.techMagBeam = true;
@@ -213,7 +213,7 @@ javascript:(function() {
                 );
             },
 
-            requires: "rocket engine (Rocket Thrusters), Azimuth thruster",
+            requires: "rocket engine, Azimuth thruster",
 
             effect() {
                 e.techChemtrail = true;
@@ -241,7 +241,7 @@ javascript:(function() {
                 );
             },
 
-            requires: "rocket engine (Rocket Thrusters), MagBeam",
+            requires: "rocket engine, MagBeam",
 
             effect() {
                 e.techWoodward = true;
@@ -261,7 +261,7 @@ javascript:(function() {
     }
 
     console.log(
-        "%cRocket Engine and techs successfully installed",
-        "color: gray"
+        "Rocket Thrust Check",
+        "Rocket Thrust Active"
     );
 })();
