@@ -161,7 +161,7 @@ javascript:(function() {
                 return hasRocketEngine() && !e.techAzimuth;
             },
 
-            requires: "",
+            
 
             effect() {
                 e.techAzimuth = true;
@@ -185,7 +185,7 @@ javascript:(function() {
                 return hasRocketEngine() && !e.techMagBeam;
             },
 
-            requires: "",
+            
 
             effect() {
                 e.techMagBeam = true;
@@ -213,7 +213,7 @@ javascript:(function() {
                 );
             },
 
-            requires: "rocket, Azimuth thruster",
+            requires: "Azimuth thruster",
 
             effect() {
                 e.techChemtrail = true;
@@ -241,7 +241,7 @@ javascript:(function() {
                 );
             },
 
-            requires: "rocket, MagBeam",
+            requires: "MagBeam",
 
             effect() {
                 e.techWoodward = true;
