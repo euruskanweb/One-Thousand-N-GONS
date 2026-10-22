@@ -1,6 +1,6 @@
 javascript:(function() {
     const e = {
-        name: "rocket engine",
+        name: "rocket",
         descriptionFunction() {
             return `dash forward at high speed<br>hitting a mob damages it<br>${Number((0.5 * this.ammoPack).toFixed(1))}</strong> dashes per ${powerUps.orb.ammo()}`;
         },
@@ -14,7 +14,7 @@ javascript:(function() {
         cooldown: 45,
         cdLength: 45,
         dashLength: 12,
-        dashSpeed: 45,
+        dashSpeed: 25,
         dashDamage: 40,
         dashEndCycle: 0,
         dashHit: new Set(),
@@ -161,7 +161,7 @@ javascript:(function() {
                 return hasRocketEngine() && !e.techAzimuth;
             },
 
-            requires: "rocket engine",
+            requires: "rocket",
 
             effect() {
                 e.techAzimuth = true;
@@ -185,7 +185,7 @@ javascript:(function() {
                 return hasRocketEngine() && !e.techMagBeam;
             },
 
-            requires: "rocket engine",
+            requires: "rocket",
 
             effect() {
                 e.techMagBeam = true;
@@ -213,7 +213,7 @@ javascript:(function() {
                 );
             },
 
-            requires: "rocket engine, Azimuth thruster",
+            requires: "rocket, Azimuth thruster",
 
             effect() {
                 e.techChemtrail = true;
@@ -241,7 +241,7 @@ javascript:(function() {
                 );
             },
 
-            requires: "rocket engine, MagBeam",
+            requires: "rocket, MagBeam",
 
             effect() {
                 e.techWoodward = true;
