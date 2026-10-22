@@ -143,8 +143,13 @@ javascript:(function() {
     );
 
     // Check that Rocket Engine exists.
-    const hasRocketEngine = () =>
-        b.guns.some(gun => gun.name === "rocket engine");
+    const hasRocketEngine = () => {
+    const rocketEngine = b.guns.find(
+        gun => gun.name === "rocket engine"
+    );
+
+    return !!rocketEngine && rocketEngine.have === true;
+};
 
     // Register the Rocket Engine techs.
     const rocketTechs = [
