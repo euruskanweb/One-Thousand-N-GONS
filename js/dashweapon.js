@@ -161,7 +161,7 @@ javascript:(function() {
                 return hasRocketEngine() && !e.techAzimuth;
             },
 
-            requires: "rocket",
+            requires: "",
 
             effect() {
                 e.techAzimuth = true;
@@ -185,7 +185,7 @@ javascript:(function() {
                 return hasRocketEngine() && !e.techMagBeam;
             },
 
-            requires: "rocket",
+            requires: "",
 
             effect() {
                 e.techMagBeam = true;
