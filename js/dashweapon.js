@@ -255,7 +255,47 @@ javascript:(function() {
             remove() {
                 e.techWoodward = false;
             }
+        },
+
+        {
+    name: "Consciousness causes collapse",
+    description: "Lose yourself.",
+    maxCount: 1,
+    count: 0,
+    frequency: 1,
+    frequencyDefault: 1,
+    isInstant: true,
+    isBadRandomOption: true,
+    allowed() {
+        return true;
+    },
+    requires: "",
+    effect() {
+        let removedTechCount = 0;
+
+        for (let i = tech.tech.length - 1; i >= 0; i--) {
+            if (tech.tech[i].count > 0 && !tech.tech[i].isInstant) {
+                tech.removeTech(i);
+                removedTechCount++;
+            }
         }
+
+        if (removedTechCount > 0) {
+            powerUps.spawnDelay("tech", removedTechCount);
+        }
+
+        b.resetAllGuns();
+        b.updateGunHUD();
+        b.guns = b.guns || [];
+
+        if (m.fieldMode !== 0) {
+            powerUps.spawn(m.pos.x + 40, m.pos.y, "field");
+            m.setField(0);
+        }
+
+        tech.updateTechHUD();
+    }
+}
     ];
 
     // Add each tech only if it is not already registered.
