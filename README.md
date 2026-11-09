@@ -2,7 +2,7 @@ A new update for the classic 2d rougelike shooter we all know and love
 
 CURRENT ADDITIONS:
 
-New Weapon - Dash
+New Weapon - Dash<br>
 // Dash forward at high speeds and ran into enemies
 // Four new techs to unlock for Dash
 
