@@ -99,7 +99,7 @@ javascript:(function() {
 
     const cursorTechs = [
         {
-            name: "Cursor Power",
+            name: "Microcontroller",
             description: "Cursor clicks deal <strong>twice as much damage</strong>",
             maxCount: 1,
             count: 0,
@@ -118,7 +118,7 @@ javascript:(function() {
             }
         },
         {
-            name: "Cursor Pierce",
+            name: "NOR flash",
             description: "Cursor clicks hit <strong>all mobs under the cursor</strong>",
             maxCount: 1,
             count: 0,
@@ -137,7 +137,7 @@ javascript:(function() {
             }
         },
         {
-            name: "Cursor Chain",
+            name: "Trackball",
             description: "Cursor hits also deal <strong>half damage to nearby mobs</strong>",
             maxCount: 1,
             count: 0,
@@ -156,7 +156,7 @@ javascript:(function() {
             }
         },
         {
-            name: "Cursor Nova",
+            name: "Vacuum tube",
             description: "Cursor hits create a small <strong>explosion</strong>",
             maxCount: 1,
             count: 0,
